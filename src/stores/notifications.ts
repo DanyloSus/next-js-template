@@ -1,0 +1,34 @@
+import { create } from "zustand";
+
+export type Notification = {
+  id: string;
+  type: "info" | "warning" | "success" | "error";
+  title: string;
+  message?: string;
+};
+
+type NotificationsStore = {
+  notifications: Notification[];
+  addNotification: (notification: Omit<Notification, "id">) => void;
+  dismissNotification: (id: string) => void;
+};
+
+/**
+ * Global toast/notification queue. Push from anywhere (including non-React code
+ * like the API client) via `useNotifications.getState().addNotification(...)`.
+ * Render the queue with `<Notifications />`.
+ */
+export const useNotifications = create<NotificationsStore>(set => ({
+  notifications: [],
+  addNotification: notification =>
+    set(state => ({
+      notifications: [
+        ...state.notifications,
+        { id: crypto.randomUUID(), ...notification },
+      ],
+    })),
+  dismissNotification: id =>
+    set(state => ({
+      notifications: state.notifications.filter(item => item.id !== id),
+    })),
+}));
