@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mts",
+    "**/*.cts",
+    "**/*.mjs",
+    "**/*.js",
+    "**/*.jsx",
+    ".next/types/**/*.ts",
+    ".storybook/**/*.ts",
+    ".lintstagedrc.mjs"
+  ],
+  "exclude": ["node_modules", ".next", "storybook-static"]
+}
