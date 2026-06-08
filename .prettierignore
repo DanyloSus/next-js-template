@@ -1,0 +1,12 @@
+.next
+node_modules
+package-lock.json
+public
+*.md
+coverage
+playwright-report
+test-results
+storybook-static
+
+# Generated from ai/ by scripts/sync-ai-adapters.mjs
+.claude
